@@ -556,7 +556,7 @@ class Carbon extends DateTime implements JsonSerializable
         if (isset($locale)) {
             setlocale(LC_NUMERIC, $locale);
         }
-        static::setLastErrors(parent::getLastErrors());
+        static::setLastErrors(parent::getLastErrors() ?: []);
     }
 
     /**
@@ -909,7 +909,7 @@ class Carbon extends DateTime implements JsonSerializable
 
         if ($date instanceof DateTime || $date instanceof DateTimeInterface) {
             $instance = static::instance($date);
-            $instance::setLastErrors($lastErrors);
+            $instance::setLastErrors($lastErrors ?: []);
 
             return $instance;
         }
